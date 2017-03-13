@@ -7,7 +7,6 @@ public class Comedor {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Scanner teclado=new Scanner(System.in);
 		Plato plato1,plato2;
 		boolean salir=false;
 		int seleccion, nMenus;
@@ -25,7 +24,7 @@ public class Comedor {
 
 		do{
 			System.out.println("-SELECCIONA UN OPCION-\n1-Ver carta.\n2-Atender cliente.\n3-Cobrar a un cliente.");
-			seleccion=teclado.nextInt();
+			seleccion=Leer.pedirEnteroValidar();
 
 			switch(seleccion){
 			case 1:
@@ -34,7 +33,7 @@ public class Comedor {
 				break;
 			case 2:
 				System.out.print("¿Cuantos menus quieres?: ");
-				nMenus=teclado.nextInt();
+				nMenus=Leer.pedirEnteroValidar();
 				System.out.println("-CARTA-");
 				cartaRestaurante.mostrarCarta();
 
@@ -47,15 +46,15 @@ public class Comedor {
 				for (int i=0;i<nMenus;i++){
 					System.out.println("-"+(i+1)+"º MENU-");
 					System.out.print("¿Que plato quiere de primero?: ");
-					seleccion=teclado.nextInt();
+					seleccion=Leer.pedirEnteroValidar();
 					plato1=cartaRestaurante.getListaPlatos(seleccion);
 					System.out.print("¿Que plato quiere de segundo?: ");
-					seleccion=teclado.nextInt();
+					seleccion=Leer.pedirEnteroValidar();
 					plato2=cartaRestaurante.getListaPlatos(seleccion);
 					System.out.print("¿Que quiere para beber?: ");
-					bebida=teclado.next();
+					bebida=Leer.pedirCadena();
 					System.out.print("¿Que quiere de postre?: ");
-					postre=teclado.next();
+					postre=Leer.pedirCadena();
 
 
 					tempMenu=new Menu(plato1,plato2,bebida,postre);
@@ -70,7 +69,7 @@ public class Comedor {
 				break;
 			case 3:
 				System.out.print("¿Que numero de mesa deseas cobrar?: ");
-				seleccion=teclado.nextInt();
+				seleccion=Leer.pedirEnteroValidar();
 				cliente=listaMesa.getListaClientes(seleccion);
 				tempMenusCliente=new int[cliente.getMenusCliente().length];
 				precioTotal=0;
@@ -92,7 +91,7 @@ public class Comedor {
 				System.out.printf("Precio total= %3.2f€\n",precioTotal);
 				do{
 					System.out.print("¿Cuanto dinero te da el cliente?: ");
-					dinero=teclado.nextFloat();
+					dinero=Leer.pedirFloat();
 					if (precioTotal>dinero)
 						System.out.println("ERRRO: El cliente ha entregado menos dinero del que necesita, vuelva a introducir el dinero.");
 				}while(precioTotal>dinero);
